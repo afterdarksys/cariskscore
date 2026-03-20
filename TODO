@@ -1,0 +1,86 @@
+# TODO
+
+## High Priority
+
+- [ ] Import security incident data from CVE databases
+  - Integrate with NVD API for CA-related CVEs
+  - Parse and categorize incident severity
+  - Auto-update incident scores based on new CVEs
+
+- [ ] Track Certificate Transparency log violations
+  - Monitor for misissuance
+  - Flag certificates issued without proper CT logging
+  - Alert on suspicious issuance patterns
+
+- [ ] Add audit report parsing
+  - Parse WebTrust audit reports
+  - Extract compliance findings
+  - Update audit scores based on findings
+
+## Medium Priority
+
+- [ ] Web UI for visualization
+  - Dashboard showing top/bottom CAs
+  - Interactive scoring breakdowns
+  - Search interface for CT logs
+  - Historical trend graphs
+
+- [ ] API server mode
+  - RESTful API endpoints
+  - JSON responses for all commands
+  - Rate limiting and authentication
+  - OpenAPI/Swagger documentation
+
+- [ ] Export reports
+  - PDF reports with CA analysis
+  - CSV exports for spreadsheet analysis
+  - Markdown reports for documentation
+
+## Low Priority
+
+- [ ] Integration with Censys API
+  - Cross-reference with Censys certificate data
+  - Enhanced certificate discovery
+  - Additional validation metrics
+
+- [ ] Historical trend tracking
+  - Track score changes over time
+  - Identify improving/declining CAs
+  - Generate trend reports
+  - Archive historical CCADB snapshots
+
+- [ ] Advanced features
+  - Email notifications for score changes
+  - Webhook support for integrations
+  - Custom scoring weights configuration
+  - Multi-user database support
+  - Certificate expiration monitoring
+
+## Documentation
+
+- [ ] Add API documentation
+- [ ] Create contribution guidelines
+- [ ] Add code examples for library usage
+- [ ] Video tutorial for setup and usage
+
+## Testing
+
+- [ ] Add unit tests for scorer module
+- [ ] Add integration tests for indexer
+- [ ] Add end-to-end tests for CLI commands
+- [ ] Set up CI/CD pipeline
+- [ ] Add code coverage reporting
+
+## Performance
+
+- [ ] Optimize database queries
+- [ ] Add caching for CCADB fetches
+- [ ] Parallel processing for scoring
+- [ ] Database indexing improvements
+
+## Security
+
+- [ ] Add input validation for search queries
+- [ ] Implement rate limiting for CT searches
+- [ ] Add database encryption option
+- [ ] Security audit of dependencies

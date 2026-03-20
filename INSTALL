@@ -1,0 +1,127 @@
+# Installation Guide
+
+## Prerequisites
+
+- Go 1.21 or later
+- GCC compiler (required for SQLite3 CGO bindings)
+
+### macOS
+```bash
+brew install go
+# GCC comes with Xcode Command Line Tools
+xcode-select --install
+```
+
+### Linux (Debian/Ubuntu)
+```bash
+sudo apt update
+sudo apt install golang-go gcc
+```
+
+### Linux (RHEL/Fedora)
+```bash
+sudo dnf install golang gcc
+```
+
+## Installation Methods
+
+### Method 1: Build from Source
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd cariskscore
+
+# Build the binary
+go build -o cariskscore ./cmd/cariskscore
+
+# Optionally, move to PATH
+sudo mv cariskscore /usr/local/bin/
+```
+
+### Method 2: Go Install
+
+```bash
+# Install directly from source
+cd cariskscore
+go install ./cmd/cariskscore
+
+# Binary will be in $GOPATH/bin or ~/go/bin
+```
+
+### Method 3: Download Pre-built Binary
+
+Check the releases page for pre-built binaries for your platform.
+
+## Post-Installation
+
+### Verify Installation
+
+```bash
+./cariskscore --help
+```
+
+### Initialize Database
+
+```bash
+# Index Certificate Authorities
+./cariskscore index
+
+# Compute security scores
+./cariskscore score
+```
+
+### Database Location
+
+By default, data is stored at `~/.cariskscore/cariskscore.db`
+
+To use a custom location:
+```bash
+export CARISKSCORE_DB=/path/to/custom/db.sqlite
+```
+
+## Troubleshooting
+
+### CGO Errors
+
+If you see errors about CGO or sqlite3:
+
+```bash
+# Ensure GCC is installed
+gcc --version
+
+# Try building with CGO explicitly enabled
+CGO_ENABLED=1 go build -o cariskscore ./cmd/cariskscore
+```
+
+### Permission Errors
+
+If database creation fails:
+
+```bash
+# Ensure ~/.cariskscore directory exists and is writable
+mkdir -p ~/.cariskscore
+chmod 755 ~/.cariskscore
+```
+
+### Network Issues
+
+The tool requires internet access to:
+- Download CCADB data (index command)
+- Query crt.sh API (search command)
+
+Ensure firewall rules allow outbound HTTPS connections.
+
+## Uninstallation
+
+```bash
+# Remove binary
+rm /usr/local/bin/cariskscore
+
+# Remove database and config
+rm -rf ~/.cariskscore
+```
+
+## Next Steps
+
+See README.md for usage examples and command reference.
